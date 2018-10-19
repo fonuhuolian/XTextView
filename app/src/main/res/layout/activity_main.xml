@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <org.fonuhuolian.xtextview.FoldTextView
+        android:id="@+id/tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:foldedTextHints="全部"
+        app:hintWordsColor="#0080ff"
+        app:hintWordsSize="20"
+        app:limitRows="2"
+        app:textContent="123"
+        app:unFoldedTextHints="折叠"
+        app:wordsColor="#f50000"
+        app:wordsSize="12" />
+
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onchange"
+        android:text="点击" />
+
+</LinearLayout>

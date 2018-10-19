@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="FoldTextView">
+        <attr name="foldedTextHints" format="string|reference" />
+        <attr name="hintWordsColor" format="color|reference" />
+        <attr name="hintWordsSize" format="integer" />
+        <attr name="textContent" format="string|reference" />
+        <attr name="limitRows" format="integer" />
+        <attr name="unFoldedTextHints" format="string|reference" />
+        <attr name="wordsColor" format="color|reference" />
+        <attr name="wordsSize" format="integer" />
+    </declare-styleable>
+
+</resources>

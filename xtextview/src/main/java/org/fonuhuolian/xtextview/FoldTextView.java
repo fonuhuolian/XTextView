@@ -43,8 +43,8 @@ public class FoldTextView extends LinearLayout implements View.OnClickListener {
     private int targetHeight = 0;
     // 文本折叠触发高度
     private int shortHeight = 0;
-    // 是否显示
-    private boolean isShow = true;
+    // 是否是折叠状态(默认可以，即折叠状态,此状态只有点击事件使用)
+    private boolean isFolded = true;
     // 是否可以响应点击事件
     private boolean isCanClick = false;
 
@@ -77,7 +77,7 @@ public class FoldTextView extends LinearLayout implements View.OnClickListener {
         contentTv.setTextSize(TypedValue.COMPLEX_UNIT_DIP, wordsSize);
         addView(contentTv);
 
-        // 获取触发折叠的高度
+        // 获取触发折叠的高度(此值只需要测量一次)
         shortHeight = getShortHeight();
 
 
@@ -87,7 +87,7 @@ public class FoldTextView extends LinearLayout implements View.OnClickListener {
         hintTv.setTextColor(hintWordsColor);
         addView(hintTv);
 
-
+        // 测量高度
         measureHight();
 
         hintTv.setOnClickListener(this);
@@ -134,7 +134,13 @@ public class FoldTextView extends LinearLayout implements View.OnClickListener {
     }
 
 
+    /**
+     * 测量实际高度
+     */
     private void measureHight() {
+
+        // 只要调用测量就不可点击
+        isCanClick = false;
 
         contentTv.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
 
@@ -144,14 +150,8 @@ public class FoldTextView extends LinearLayout implements View.OnClickListener {
 
                 // 测量内容的实际高度
                 targetHeight = contentTv.getHeight();
-
-                if (targetHeight > shortHeight) {
-                    hintTv.setVisibility(VISIBLE);
-                    setShowOrHint(0);
-                } else {
-                    hintTv.setVisibility(GONE);
-                }
-
+                // 重新绘制页面
+                resetPage();
             }
         });
     }
@@ -164,6 +164,30 @@ public class FoldTextView extends LinearLayout implements View.OnClickListener {
     }
 
 
+    /**
+     * 必须获得高度之后才能调用此方法
+     */
+    private void resetPage() {
+
+
+        ViewGroup.LayoutParams params = contentTv.getLayoutParams();
+
+        if (targetHeight > shortHeight) {
+            hintTv.setVisibility(VISIBLE);
+            params.height = shortHeight;
+        } else {
+            hintTv.setVisibility(GONE);
+            params.height = targetHeight;
+        }
+
+        contentTv.setLayoutParams(params);
+
+        isCanClick = true;
+        isFolded = true;
+
+        hintTv.setText(foldedTextHints);
+    }
+
     private void setShowOrHint(int duration) {
 
         isCanClick = false;
@@ -171,12 +195,12 @@ public class FoldTextView extends LinearLayout implements View.OnClickListener {
         int startHight;
         int endHeight;
 
-        if (isShow) {
-            startHight = targetHeight;
-            endHeight = shortHeight;
-        } else {
+        if (isFolded) {
             startHight = shortHeight;
             endHeight = targetHeight;
+        } else {
+            startHight = targetHeight;
+            endHeight = shortHeight;
         }
 
         final ViewGroup.LayoutParams params = contentTv.getLayoutParams();
@@ -203,7 +227,7 @@ public class FoldTextView extends LinearLayout implements View.OnClickListener {
                 isCanClick = true;
                 hintTv.setText(foldedTextHints.equals(hintTv.getText().toString()) ? unFoldedTextHints : foldedTextHints);
 
-                isShow = !isShow;
+                isFolded = !isFolded;
             }
 
             @Override
@@ -225,7 +249,6 @@ public class FoldTextView extends LinearLayout implements View.OnClickListener {
 
         contentTv.setText(text);
         hintTv.setText(unFoldedTextHints);
-        isShow = true;
 
         measureHight();
     }
@@ -234,7 +257,6 @@ public class FoldTextView extends LinearLayout implements View.OnClickListener {
 
         contentTv.setText(stringResId);
         hintTv.setText(unFoldedTextHints);
-        isShow = true;
 
         measureHight();
     }

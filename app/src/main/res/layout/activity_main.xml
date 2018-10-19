@@ -15,7 +15,7 @@
         app:hintWordsColor="#0080ff"
         app:hintWordsSize="15"
         app:limitRows="4"
-        app:textContent="123"
+        app:textContent="一千年前，被誉为‘大陆太阳’的斗帝率领五大家族对抗北方极寒之地的魂殿，将他们封印在黑暗的地下，为斗气大陆带来和平。眼看着日夜交替，光明就要陨落，黑暗即将崛起，五大家族子弟坚定地守卫着这份光明，与魂殿迎来一战"
         app:unFoldedTextHints="折叠"
         app:wordsColor="#f50000"
         app:wordsSize="14" />

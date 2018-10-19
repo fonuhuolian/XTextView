@@ -13,12 +13,12 @@
         android:layout_height="wrap_content"
         app:foldedTextHints="全部"
         app:hintWordsColor="#0080ff"
-        app:hintWordsSize="20"
-        app:limitRows="2"
+        app:hintWordsSize="15"
+        app:limitRows="4"
         app:textContent="123"
         app:unFoldedTextHints="折叠"
         app:wordsColor="#f50000"
-        app:wordsSize="12" />
+        app:wordsSize="14" />
 
 
     <Button

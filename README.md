@@ -45,5 +45,6 @@ foldTextView.setText();
 
 > 效果
 
-![效果](https://github.com/fonuhuolian/XBottomBar/blob/master/screenshot/a.png?raw=true)
+![效果1](https://github.com/fonuhuolian/XTextView/blob/master/screenshots/a.png?raw=true)
+![效果2](https://github.com/fonuhuolian/XTextView/blob/master/screenshots/b.png?raw=true)
 

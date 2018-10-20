@@ -11,6 +11,7 @@
         <attr name="wordsColor" format="color|reference" />
         <attr name="wordsSize" format="integer" />
         <attr name="animDuration" format="integer" />
+        <attr name="isSupportContentClick" format="boolean" />
     </declare-styleable>
 
 </resources>

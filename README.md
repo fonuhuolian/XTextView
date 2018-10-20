@@ -26,6 +26,7 @@ implementation 'com.github.fonuhuolian:XTextView:1.0.3'
     android:id="@+id/tv"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    app:isSupportContentClick="true"
     app:animDuration="2000"
     app:foldedTextHints="全部"
     app:hintWordsColor="#0080ff"

@@ -95,7 +95,7 @@ public class FoldTextView extends LinearLayout implements View.OnClickListener {
         addView(hintTv);
 
         // 测量高度
-        measureHight();
+        measureHight(false);
 
         hintTv.setOnClickListener(this);
     }
@@ -142,7 +142,7 @@ public class FoldTextView extends LinearLayout implements View.OnClickListener {
     /**
      * 测量实际高度
      */
-    private void measureHight() {
+    private void measureHight(final boolean isSetText) {
 
         // 只要调用测量就不可点击
         isCanClick = false;
@@ -158,7 +158,7 @@ public class FoldTextView extends LinearLayout implements View.OnClickListener {
                 // 测量内容的实际高度
                 targetHeight = contentTv.getHeight();
                 // 重新绘制页面
-                resetPage();
+                resetPage(isSetText);
             }
         });
     }
@@ -174,7 +174,7 @@ public class FoldTextView extends LinearLayout implements View.OnClickListener {
     /**
      * 必须获得高度之后才能调用此方法
      */
-    private void resetPage() {
+    private void resetPage(boolean isSetText) {
 
 
         ViewGroup.LayoutParams params = contentTv.getLayoutParams();
@@ -219,6 +219,9 @@ public class FoldTextView extends LinearLayout implements View.OnClickListener {
         isCanClick = true;
 
         contentTv.setVisibility(VISIBLE);
+
+        if (isSetText)
+            setExpanded(isExpanded);
     }
 
     private void setShowOrHint() {
@@ -284,13 +287,13 @@ public class FoldTextView extends LinearLayout implements View.OnClickListener {
     public void setText(String text) {
 
         contentTv.setText(text);
-        measureHight();
+        measureHight(true);
     }
 
     public void setText(@StringRes int stringResId) {
 
         contentTv.setText(stringResId);
-        measureHight();
+        measureHight(true);
     }
 
 

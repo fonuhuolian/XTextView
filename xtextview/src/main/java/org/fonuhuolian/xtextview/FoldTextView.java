@@ -80,6 +80,7 @@ public class FoldTextView extends LinearLayout implements View.OnClickListener {
         contentTv = new TextView(context);
         contentTv.setText(s);
         contentTv.setTextColor(wordsColor);
+        contentTv.setVisibility(INVISIBLE);
         contentTv.setTextSize(TypedValue.COMPLEX_UNIT_DIP, wordsSize);
         addView(contentTv);
 
@@ -97,8 +98,6 @@ public class FoldTextView extends LinearLayout implements View.OnClickListener {
         measureHight();
 
         hintTv.setOnClickListener(this);
-        contentTv.setOnClickListener(this);
-
     }
 
     /**
@@ -147,6 +146,8 @@ public class FoldTextView extends LinearLayout implements View.OnClickListener {
 
         // 只要调用测量就不可点击
         isCanClick = false;
+
+        contentTv.setVisibility(INVISIBLE);
 
         contentTv.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
 
@@ -216,6 +217,8 @@ public class FoldTextView extends LinearLayout implements View.OnClickListener {
         contentTv.setLayoutParams(params);
 
         isCanClick = true;
+
+        contentTv.setVisibility(VISIBLE);
     }
 
     private void setShowOrHint() {

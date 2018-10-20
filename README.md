@@ -16,7 +16,7 @@ allprojects {
 ```
 `module build.gradle `
 ```
-implementation 'com.github.fonuhuolian:XTextView:1.0.1'
+implementation 'com.github.fonuhuolian:XTextView:1.0.3'
 ```
 
 > ①折叠textview

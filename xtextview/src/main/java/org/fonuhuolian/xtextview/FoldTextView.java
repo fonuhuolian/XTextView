@@ -100,6 +100,9 @@ public class FoldTextView extends LinearLayout implements View.OnClickListener {
         measureHight();
 
         hintTv.setOnClickListener(this);
+
+        if (isSupportContentClick)
+            contentTv.setOnClickListener(this);
     }
 
     /**

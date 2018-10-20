@@ -10,6 +10,7 @@
         <attr name="unFoldedTextHints" format="string|reference" />
         <attr name="wordsColor" format="color|reference" />
         <attr name="wordsSize" format="integer" />
+        <attr name="animDuration" format="integer" />
     </declare-styleable>
 
 </resources>

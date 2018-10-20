@@ -32,6 +32,8 @@ public class FoldTextView extends LinearLayout implements View.OnClickListener {
     private int hintWordsSize = 15;
     // 文字提示的颜色
     private int hintWordsColor = 0xffff0000;
+    // 动画持续时间
+    private int duration = 300;
     // 文字内容
     private String s = "";
     // 文字内容控件
@@ -43,10 +45,14 @@ public class FoldTextView extends LinearLayout implements View.OnClickListener {
     private int targetHeight = 0;
     // 文本折叠触发高度
     private int shortHeight = 0;
-    // 是否是折叠状态(默认可以，即折叠状态,此状态只有点击事件使用)
-    private boolean isFolded = true;
+    // 是否是展开状态(默认非展开状态)
+    private boolean isExpanded = false;
     // 是否可以响应点击事件
     private boolean isCanClick = false;
+    // 是否支持折叠(有可能达不到折叠触发的高度)
+    private boolean isSupportFlod;
+    // 监听事件
+    private OnExpandedChangeListener listener;
 
     public FoldTextView(Context context) {
         this(context, null);
@@ -95,7 +101,6 @@ public class FoldTextView extends LinearLayout implements View.OnClickListener {
 
     }
 
-
     /**
      * 得到属性值
      *
@@ -113,6 +118,7 @@ public class FoldTextView extends LinearLayout implements View.OnClickListener {
         s = ta.getString(R.styleable.FoldTextView_textContent);
         limitRows = ta.getInteger(R.styleable.FoldTextView_limitRows, limitRows);
         wordsSize = ta.getInteger(R.styleable.FoldTextView_wordsSize, wordsSize);
+        duration = ta.getInteger(R.styleable.FoldTextView_animDuration, duration);
         hintWordsSize = ta.getInteger(R.styleable.FoldTextView_hintWordsSize, hintWordsSize);
         ta.recycle();
     }
@@ -159,8 +165,8 @@ public class FoldTextView extends LinearLayout implements View.OnClickListener {
     @Override
     public void onClick(View v) {
 
-        if (isCanClick)
-            setShowOrHint(300);
+        if (isCanClick && isSupportFlod)
+            setShowOrHint();
     }
 
 
@@ -172,35 +178,59 @@ public class FoldTextView extends LinearLayout implements View.OnClickListener {
 
         ViewGroup.LayoutParams params = contentTv.getLayoutParams();
 
+
+        // 是否显现提示文字
         if (targetHeight > shortHeight) {
+
+            // 支持折叠
             hintTv.setVisibility(VISIBLE);
-            params.height = shortHeight;
+            isSupportFlod = true;
         } else {
+
+            // 不支持折叠
             hintTv.setVisibility(GONE);
-            params.height = targetHeight;
+            isSupportFlod = false;
         }
+
+
+        if (isSupportFlod) {
+
+            hintTv.setText(isExpanded ? unFoldedTextHints : foldedTextHints);
+
+            params.height = isExpanded ? targetHeight : shortHeight;
+
+        } else {
+
+            params.height = targetHeight;
+
+            if (isExpanded) {
+
+                isExpanded = false;
+
+                if (listener != null)
+                    listener.expandState(false);
+            }
+        }
+
 
         contentTv.setLayoutParams(params);
 
         isCanClick = true;
-        isFolded = true;
-
-        hintTv.setText(foldedTextHints);
     }
 
-    private void setShowOrHint(int duration) {
+    private void setShowOrHint() {
 
         isCanClick = false;
 
         int startHight;
         int endHeight;
 
-        if (isFolded) {
-            startHight = shortHeight;
-            endHeight = targetHeight;
-        } else {
+        if (isExpanded) {
             startHight = targetHeight;
             endHeight = shortHeight;
+        } else {
+            startHight = shortHeight;
+            endHeight = targetHeight;
         }
 
         final ViewGroup.LayoutParams params = contentTv.getLayoutParams();
@@ -225,9 +255,11 @@ public class FoldTextView extends LinearLayout implements View.OnClickListener {
             @Override
             public void onAnimationEnd(Animator animation) {
                 isCanClick = true;
-                hintTv.setText(foldedTextHints.equals(hintTv.getText().toString()) ? unFoldedTextHints : foldedTextHints);
+                isExpanded = !isExpanded;
+                hintTv.setText(isExpanded ? unFoldedTextHints : foldedTextHints);
 
-                isFolded = !isFolded;
+                if (listener != null)
+                    listener.expandState(isExpanded);
             }
 
             @Override
@@ -245,19 +277,47 @@ public class FoldTextView extends LinearLayout implements View.OnClickListener {
         valueAnimator.start();
     }
 
+
     public void setText(String text) {
 
         contentTv.setText(text);
-        hintTv.setText(unFoldedTextHints);
-
         measureHight();
     }
 
     public void setText(@StringRes int stringResId) {
 
         contentTv.setText(stringResId);
-        hintTv.setText(unFoldedTextHints);
-
         measureHight();
+    }
+
+
+    // 设置 伸展状态的监听
+    public void setOnExpandedListener(OnExpandedChangeListener onExpanedChangeListener) {
+        this.listener = onExpanedChangeListener;
+    }
+
+
+    /**
+     * 设置状态（如果文字内容不支持扩展 扩展状态不发生变更）
+     */
+    public void setExpanded(boolean isExpanded) {
+
+
+        // 用户设置的与全局变量不同才需要更改
+        if ((this.isExpanded && !isExpanded && isSupportFlod) || (!this.isExpanded && isExpanded && isSupportFlod)) {
+
+            isCanClick = false;
+            this.isExpanded = isExpanded;
+
+            ViewGroup.LayoutParams params = contentTv.getLayoutParams();
+            hintTv.setText(isExpanded ? unFoldedTextHints : foldedTextHints);
+            params.height = isExpanded ? targetHeight : shortHeight;
+            contentTv.setLayoutParams(params);
+
+            isCanClick = true;
+
+            if (listener != null)
+                listener.expandState(this.isExpanded);
+        }
     }
 }

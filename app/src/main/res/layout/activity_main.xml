@@ -28,4 +28,9 @@
         android:onClick="onchange"
         android:text="点击" />
 
+    <org.fonuhuolian.xtextview.TimeTextView
+        android:id="@+id/time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
 </LinearLayout>

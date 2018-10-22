@@ -2,11 +2,13 @@ package org.fonuhuolian.textview;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 
 import org.fonuhuolian.xtextview.FoldTextView;
 import org.fonuhuolian.xtextview.OnExpandedChangeListener;
+import org.fonuhuolian.xtextview.TimeFormatStyle;
+import org.fonuhuolian.xtextview.TimeTextView;
+import org.fonuhuolian.xtextview.XTextViewUtil;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -23,13 +25,21 @@ public class MainActivity extends AppCompatActivity {
         foldTextView.setOnExpandedListener(new OnExpandedChangeListener() {
             @Override
             public void expandState(boolean isExpand) {
-                Log.e("Dddd", isExpand + "");
+
             }
         });
+
+        TimeTextView timeTextView = (TimeTextView) findViewById(R.id.time);
+
+        long time = System.currentTimeMillis()-1000000000;
+
+        timeTextView.setTextByTime(time, TimeFormatStyle.TIME_STYYLE4);
     }
 
     public void onchange(View view) {
 
+
+        XTextViewUtil.getTodayEndTime();
 
         foldTextView.setExpanded(true);
 

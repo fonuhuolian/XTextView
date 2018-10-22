@@ -16,7 +16,7 @@ allprojects {
 ```
 `module build.gradle `
 ```
-implementation 'com.github.fonuhuolian:XTextView:1.0.3'
+implementation 'com.github.fonuhuolian:XTextView:1.0.7'
 ```
 
 > ①折叠textview
@@ -50,3 +50,17 @@ foldTextView.setText();
 ![效果1](https://github.com/fonuhuolian/XTextView/blob/master/screenshots/a.png?raw=true)
 ![效果2](https://github.com/fonuhuolian/XTextView/blob/master/screenshots/b.png?raw=true)
 
+> ②时间textview
+
+```
+<org.fonuhuolian.xtextview.TimeTextView
+    android:id="@+id/time"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" />
+```
+
+```
+TimeTextView timeTextView = (TimeTextView) findViewById(R.id.time);
+long time = System.currentTimeMillis();
+timeTextView.setTextByTime(time, TimeFormatStyle.TIME_STYYLE4);
+```

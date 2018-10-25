@@ -19,6 +19,12 @@ allprojects {
 implementation 'com.github.fonuhuolian:XTextView:1.0.8'
 ```
 
+> 混淆
+```
+-dontwarn org.fonuhuolian.xtextview.**
+-keep class org.fonuhuolian.xtextview.**{*;}
+```
+
 > ①折叠textview
 
 ```

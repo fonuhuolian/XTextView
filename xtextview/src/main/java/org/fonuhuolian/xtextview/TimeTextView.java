@@ -21,10 +21,6 @@ public class TimeTextView extends AppCompatTextView {
         super(context, attrs, defStyleAttr);
     }
 
-    public void setTextByTime(String time, TimeFormatStyle style) {
-        setTextByTime(Long.parseLong(time), style);
-    }
-
     public void setTextByTime(long time, TimeFormatStyle style) {
 
         long todayEndTime = XTextViewUtil.getTodayEndTime();

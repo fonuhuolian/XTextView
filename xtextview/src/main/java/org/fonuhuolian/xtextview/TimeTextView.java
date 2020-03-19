@@ -5,6 +5,8 @@ import android.support.v7.widget.AppCompatTextView;
 import android.util.AttributeSet;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
 public class TimeTextView extends AppCompatTextView {
 
@@ -44,8 +46,41 @@ public class TimeTextView extends AppCompatTextView {
                 // 显示昨天
                 this.setText("昨天 " + format);
             } else {
-                // 显示昨天
+                // 显示
                 this.setText("" + format);
+            }
+        }
+    }
+
+    // TODO 短提示 今天（12：00） 昨天  星期一 星期二 2020/03/05
+    public void setTextByShortTime(long time, TimeFormatStyle style) {
+
+        long todayEndTime = XTextViewUtil.getTodayEndTime();
+
+        // 今天23:59:59:999之后
+        if (time > todayEndTime) {
+            String format = new SimpleDateFormat(style.getFormat()).format(time);
+            this.setText(format);
+        } else if (todayEndTime - XTextViewUtil.sevenDaysTime > time) {
+            // 一周前
+            // 显示年月日
+            Calendar c = Calendar.getInstance();
+            c.setTime(new Date(time));
+            int year = c.get(Calendar.YEAR);
+            int month = c.get(Calendar.MONTH) + 1;
+            int day = c.get(Calendar.DATE);
+            this.setText(year + "/" + month + "/" + day);
+        } else {
+            // 显示星期 时分
+            if (todayEndTime - XTextViewUtil.oneDayTime * 2 > time) {
+                // 显示星期
+                this.setText(XTextViewUtil.getWeek(time));
+            } else if (todayEndTime - XTextViewUtil.oneDayTime > time) {
+                // 显示昨天
+                this.setText("昨天");
+            } else {
+                // 显示
+                this.setText("");
             }
         }
     }

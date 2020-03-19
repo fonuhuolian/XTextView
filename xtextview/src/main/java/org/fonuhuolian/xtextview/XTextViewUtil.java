@@ -34,6 +34,28 @@ public class XTextViewUtil {
         return endTime;
     }
 
+    private static long getTodayEndTime(long current) {
+
+        long endTime = 0;
+
+        try {
+
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss:SSS");
+            String format = simpleDateFormat.format(current);
+
+            String[] split = format.split(" ");
+            String[] time = split[1].split(":");
+
+            long startTime = current - Long.parseLong(time[0]) * 60 * 60 * 1000 - Long.parseLong(time[1]) * 60 * 1000 - Long.parseLong(time[2]) * 1000 - Long.parseLong(time[3]);
+            endTime = startTime + oneDayTime;
+
+        } catch (Exception e) {
+            Log.e("ERROR", e.getMessage());
+        }
+
+        return endTime;
+    }
+
 
     //获取指定毫秒数的对应星期
     public static String getWeek(long millis) {
@@ -65,5 +87,41 @@ public class XTextViewUtil {
                 break;
         }
         return week;
+    }
+
+    // 获取指定当前周开始时间
+    public static long getThisWeekStartTime() {
+
+        long current = System.currentTimeMillis();
+        long todayEndTime = getTodayEndTime(current);
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(current);
+        int weekDays = 0;
+        int cweek = calendar.get(Calendar.DAY_OF_WEEK);
+        switch (cweek) {
+            case 1:
+                weekDays = 7;
+                break;
+            case 2:
+                weekDays = 1;
+                break;
+            case 3:
+                weekDays = 2;
+                break;
+            case 4:
+                weekDays = 3;
+                break;
+            case 5:
+                weekDays = 4;
+                break;
+            case 6:
+                weekDays = 5;
+                break;
+            case 7:
+                weekDays = 6;
+                break;
+        }
+        return todayEndTime - weekDays * oneDayTime;
     }
 }

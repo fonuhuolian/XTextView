@@ -9,6 +9,7 @@ public class XTextViewUtil {
 
     public static long sevenDaysTime = 604800000;
     public static long oneDayTime = 86399999;
+    public static long oneDayTime2 = 86400000;
 
     public static long getTodayEndTime() {
 
@@ -122,6 +123,6 @@ public class XTextViewUtil {
                 weekDays = 6;
                 break;
         }
-        return todayEndTime - weekDays * oneDayTime;
+        return todayEndTime + 1 - weekDays * oneDayTime2;
     }
 }

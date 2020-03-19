@@ -16,7 +16,7 @@ allprojects {
 ```
 `module build.gradle `
 ```
-implementation 'com.github.fonuhuolian:XTextView:1.1.4'
+implementation 'com.github.fonuhuolian:XTextView:1.1.5'
 ```
 
 > 混淆

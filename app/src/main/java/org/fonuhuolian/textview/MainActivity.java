@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
 
         TimeTextView timeTextView = (TimeTextView) findViewById(R.id.time);
 
-        long time = System.currentTimeMillis()-1000000000;
+        long time = System.currentTimeMillis() - 1000000000;
 
         timeTextView.setTextByTime(time, TimeFormatStyle.TIME_STYYLE4);
     }

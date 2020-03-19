@@ -55,6 +55,11 @@ public class TimeTextView extends AppCompatTextView {
     // TODO 短提示 今天（12：00） 昨天  星期一 星期二 2020/03/05
     public void setTextByShortTime(long time, TimeFormatStyle style) {
 
+        if (time == 0) {
+            this.setText("");
+            return;
+        }
+
         long todayEndTime = XTextViewUtil.getTodayEndTime();
 
         // 今天23:59:59:999之后

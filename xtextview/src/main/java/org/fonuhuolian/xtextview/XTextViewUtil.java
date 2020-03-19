@@ -18,7 +18,7 @@ public class XTextViewUtil {
 
         try {
 
-            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss:SSS");
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss:SSS");
             String format = simpleDateFormat.format(current);
 
             String[] split = format.split(" ");

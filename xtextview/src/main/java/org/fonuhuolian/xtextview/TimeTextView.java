@@ -84,8 +84,12 @@ public class TimeTextView extends AppCompatTextView {
                 // 显示昨天
                 this.setText("昨天");
             } else {
-                // 显示
-                this.setText("");
+                // 显示今天
+                String format = new SimpleDateFormat(style.getFormat()).format(time);
+                this.setText(format);
+                String[] split = format.split(" ");
+                int i = split[0].length() + 1;
+                this.setText(format.substring(i, format.length()));
             }
         }
     }

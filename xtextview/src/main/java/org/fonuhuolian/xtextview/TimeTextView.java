@@ -29,7 +29,7 @@ public class TimeTextView extends AppCompatTextView {
 
 
         // 此周前（本周星期一之前）或者今天23:59:59:999之后
-        if (todayEndTime - XTextViewUtil.getThisWeekStartTime() > time || time > todayEndTime) {
+        if (XTextViewUtil.getThisWeekStartTime() > time || time > todayEndTime) {
             // 显示年月日
             String format = new SimpleDateFormat(style.getFormat()).format(time);
             this.setText(format);
@@ -66,7 +66,7 @@ public class TimeTextView extends AppCompatTextView {
         if (time > todayEndTime) {
             String format = new SimpleDateFormat(style.getFormat()).format(time);
             this.setText(format);
-        } else if (todayEndTime - XTextViewUtil.getThisWeekStartTime() > time) {
+        } else if (XTextViewUtil.getThisWeekStartTime() > time) {
             // 此周前（本周星期一之前）
             // 显示年月日
             Calendar c = Calendar.getInstance();

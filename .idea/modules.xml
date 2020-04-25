@@ -2,7 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/Documents-GitHub-XTextView.iml" filepath="$PROJECT_DIR$/Documents-GitHub-XTextView.iml" group="XTextView" />
       <module fileurl="file://$PROJECT_DIR$/GitHub-XTextView.iml" filepath="$PROJECT_DIR$/GitHub-XTextView.iml" group="XTextView" />
+      <module fileurl="file://$PROJECT_DIR$/app/GitHub-XTextView-app.iml" filepath="$PROJECT_DIR$/app/GitHub-XTextView-app.iml" group="XTextView/app" />
+      <module fileurl="file://$PROJECT_DIR$/xtextview/GitHub-XTextView-xtextview.iml" filepath="$PROJECT_DIR$/xtextview/GitHub-XTextView-xtextview.iml" group="XTextView/xtextview" />
       <module fileurl="file://$PROJECT_DIR$/XTextView.iml" filepath="$PROJECT_DIR$/XTextView.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/XTextView-app.iml" filepath="$PROJECT_DIR$/app/XTextView-app.iml" group="XTextView/app" />
       <module fileurl="file://$PROJECT_DIR$/xtextview/XTextView-xtextview.iml" filepath="$PROJECT_DIR$/xtextview/XTextView-xtextview.iml" group="XTextView/xtextview" />

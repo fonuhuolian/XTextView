@@ -25,30 +25,83 @@ public class TimeTextView extends AppCompatTextView {
 
     public void setTextByTime(long time, TimeFormatStyle style) {
 
-        long todayEndTime = XTextViewUtil.getTodayEndTime();
 
+        if (style == TimeFormatStyle.TIME_STYYLE5) {
 
-        // 此周前（本周星期一之前）或者今天23:59:59:999之后
-        if (XTextViewUtil.getThisWeekStartTime() > time || time > todayEndTime) {
-            // 显示年月日
-            String format = new SimpleDateFormat(style.getFormat()).format(time);
-            this.setText(format);
-        } else {
-            // 显示星期 时分
-            int i = style.getFormat().indexOf(" ");
-            String formatStyle = style.getFormat().substring(i + 1);
-            String format = new SimpleDateFormat(formatStyle).format(time);
+            // 与今天的时间差
+            long now = System.currentTimeMillis();
+            // 大于今天的差值
+            long difference = XTextViewUtil.getTodayStartTime() - time;
+            // 今天的差值
+            long todayDifference = now - time;
 
-            if (todayEndTime - XTextViewUtil.oneDayTime * 2 > time) {
-                // 显示星期
-                this.setText(XTextViewUtil.getWeek(time) + " " + format);
-            } else if (todayEndTime - XTextViewUtil.oneDayTime > time) {
-                // 显示昨天
-                this.setText("昨天 " + format);
+            if (difference > 0) {
+                // 昨天及以前
+
+                // 2天前 。。。
+                if (difference - XTextViewUtil.oneDayTime2 > 0) {
+
+                    int temp = difference % XTextViewUtil.oneDayTime2 == 0 ? 0 : 1;
+
+                    long days = difference / XTextViewUtil.oneDayTime2 + temp;
+
+                    this.setText(days + "天前");
+                } else {
+                    // 昨天
+                    this.setText("昨天");
+                }
+
             } else {
-                // 显示
-                this.setText("" + format);
+
+                if (todayDifference >= 0) {
+                    // 分钟以前
+
+                    if (todayDifference - XTextViewUtil.minute59 >= 0) {
+                        // 小时前
+                        int hour = (int) (todayDifference / XTextViewUtil.oneHour);
+
+                        if (hour == 0)
+                            hour = 1;
+
+                        this.setText(hour + "小时前");
+                    } else {
+
+                        long minute = todayDifference / 60000 + 1;
+
+                        this.setText(minute + "分钟前");
+                    }
+                } else {
+                    this.setText("现在");
+                }
             }
+
+        } else {
+
+            long todayEndTime = XTextViewUtil.getTodayEndTime();
+
+            // 此周前（本周星期一之前）或者今天23:59:59:999之后
+            if (XTextViewUtil.getThisWeekStartTime() > time || time > todayEndTime) {
+                // 显示年月日
+                String format = new SimpleDateFormat(style.getFormat()).format(time);
+                this.setText(format);
+            } else {
+                // 显示星期 时分
+                int i = style.getFormat().indexOf(" ");
+                String formatStyle = style.getFormat().substring(i + 1);
+                String format = new SimpleDateFormat(formatStyle).format(time);
+
+                if (todayEndTime - XTextViewUtil.oneDayTime * 2 > time) {
+                    // 显示星期
+                    this.setText(XTextViewUtil.getWeek(time) + " " + format);
+                } else if (todayEndTime - XTextViewUtil.oneDayTime > time) {
+                    // 显示昨天
+                    this.setText("昨天 " + format);
+                } else {
+                    // 显示
+                    this.setText("" + format);
+                }
+            }
+
         }
     }
 

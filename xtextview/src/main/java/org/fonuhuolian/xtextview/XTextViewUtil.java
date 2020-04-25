@@ -10,6 +10,18 @@ public class XTextViewUtil {
     public static long sevenDaysTime = 604800000;
     public static long oneDayTime = 86399999;
     public static long oneDayTime2 = 86400000;
+    public static long minute59 = 3540000;
+    public static long oneHour = 3600000;
+
+    public static long getTodayStartTime() {
+
+        Calendar todayStart = Calendar.getInstance();
+        todayStart.set(Calendar.HOUR_OF_DAY, 0);
+        todayStart.set(Calendar.MINUTE, 0);
+        todayStart.set(Calendar.SECOND, 0);
+        todayStart.set(Calendar.MILLISECOND, 0);
+        return todayStart.getTime().getTime();
+    }
 
     public static long getTodayEndTime() {
 

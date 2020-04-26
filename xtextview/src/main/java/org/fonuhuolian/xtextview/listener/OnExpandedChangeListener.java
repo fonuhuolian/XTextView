@@ -1,4 +1,4 @@
-package org.fonuhuolian.xtextview;
+package org.fonuhuolian.xtextview.listener;
 
 /**
  * 展开状态的监听

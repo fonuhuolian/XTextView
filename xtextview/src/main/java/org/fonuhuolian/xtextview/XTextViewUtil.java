@@ -5,15 +5,15 @@ import android.util.Log;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
-public class XTextViewUtil {
+// TODO 时间格式化的工具类(不对外提供)
+final class XTextViewUtil {
 
-    public static long sevenDaysTime = 604800000;
-    public static long oneDayTime = 86399999;
-    public static long oneDayTime2 = 86400000;
-    public static long minute59 = 3540000;
-    public static long oneHour = 3600000;
+    static long oneDayTime = 86399999;
+    static long oneDayTime2 = 86400000;
+    static long minute59 = 3540000;
+    static long oneHour = 3600000;
 
-    public static long getTodayStartTime() {
+    static long getTodayStartTime() {
 
         Calendar todayStart = Calendar.getInstance();
         todayStart.set(Calendar.HOUR_OF_DAY, 0);
@@ -71,7 +71,7 @@ public class XTextViewUtil {
 
 
     //获取指定毫秒数的对应星期
-    public static String getWeek(long millis) {
+    static String getWeek(long millis) {
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(millis);
         String week = "";
@@ -103,7 +103,7 @@ public class XTextViewUtil {
     }
 
     // 获取指定当前周开始时间
-    public static long getThisWeekStartTime() {
+    static long getThisWeekStartTime() {
 
         long current = System.currentTimeMillis();
         long todayEndTime = getTodayEndTime(current);

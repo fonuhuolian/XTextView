@@ -3,12 +3,17 @@ package org.fonuhuolian.textview;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.Toast;
 
 import org.fonuhuolian.xtextview.FoldTextView;
-import org.fonuhuolian.xtextview.OnExpandedChangeListener;
 import org.fonuhuolian.xtextview.TimeFormatStyle;
-import org.fonuhuolian.xtextview.TimeTextView;
-import org.fonuhuolian.xtextview.XTextViewUtil;
+import org.fonuhuolian.xtextview.XPraiseTextView;
+import org.fonuhuolian.xtextview.XTimeTextView;
+import org.fonuhuolian.xtextview.listener.OnExpandedChangeListener;
+import org.fonuhuolian.xtextview.listener.OnPraiseClickListener;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -29,17 +34,27 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        TimeTextView timeTextView = (TimeTextView) findViewById(R.id.time);
+        XTimeTextView XTimeTextView = (XTimeTextView) findViewById(R.id.time);
 
         long time = System.currentTimeMillis() - 1000000000;
 
-        timeTextView.setTextByTime(time, TimeFormatStyle.TIME_STYYLE4);
+        XTimeTextView.setTextByTime(time, TimeFormatStyle.TIME_STYYLE4);
+
+        XPraiseTextView praise = (XPraiseTextView) findViewById(R.id.praise);
+
+        List<String> strings = new ArrayList<>();
+        strings.add("爱吃鸡腿的Craig");
+        strings.add("Zack");
+
+        praise.setData(strings, new OnPraiseClickListener() {
+            @Override
+            public void onClick(int position, String name) {
+                Toast.makeText(MainActivity.this, name + "+" + position, Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     public void onchange(View view) {
-
-
-        XTextViewUtil.getTodayEndTime();
 
         foldTextView.setExpanded(true);
 

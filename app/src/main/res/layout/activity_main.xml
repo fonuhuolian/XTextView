@@ -28,9 +28,16 @@
         android:onClick="onchange"
         android:text="点击" />
 
-    <org.fonuhuolian.xtextview.TimeTextView
+    <org.fonuhuolian.xtextview.XTimeTextView
         android:id="@+id/time"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
+
+    <org.fonuhuolian.xtextview.XPraiseTextView
+        android:id="@+id/praise"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:x_praise_Icon="@drawable/x_heart"
+        app:x_praise_textSize="15dp" />
 
 </LinearLayout>

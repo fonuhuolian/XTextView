@@ -13,6 +13,8 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import org.fonuhuolian.xtextview.listener.OnExpandedChangeListener;
+
 /**
  * 折叠TextView
  */

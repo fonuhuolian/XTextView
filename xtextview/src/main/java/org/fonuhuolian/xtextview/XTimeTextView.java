@@ -8,18 +8,19 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-public class TimeTextView extends AppCompatTextView {
+// TODO 时间格式化文本
+public class XTimeTextView extends AppCompatTextView {
 
 
-    public TimeTextView(Context context) {
+    public XTimeTextView(Context context) {
         this(context, null);
     }
 
-    public TimeTextView(Context context, AttributeSet attrs) {
+    public XTimeTextView(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public TimeTextView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public XTimeTextView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
 

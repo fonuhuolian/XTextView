@@ -14,4 +14,10 @@
         <attr name="isSupportContentClick" format="boolean" />
     </declare-styleable>
 
+    <declare-styleable name="XPraiseTextView">
+        <attr name="x_praise_textColor" format="color" />
+        <attr name="x_praise_Icon" format="reference" />
+        <attr name="x_praise_textSize" format="dimension" />
+    </declare-styleable>
+
 </resources>

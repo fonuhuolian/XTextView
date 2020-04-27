@@ -24,6 +24,7 @@
         <attr name="x_comment_name_textColor" format="color" />
         <attr name="x_comment_content_textColor" format="color" />
         <attr name="x_comment_textSize" format="dimension" />
+        <attr name="x_comment_answer_space" format="boolean" />
     </declare-styleable>
 
 </resources>

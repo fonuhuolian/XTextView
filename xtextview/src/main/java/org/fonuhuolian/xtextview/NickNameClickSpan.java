@@ -38,8 +38,6 @@ final class NickNameClickSpan extends ClickableSpan {
         ds.setColor(mTextColor);
         // 文字大小
         ds.setTextSize(mTextSize);
-        // 设置粗体
-        ds.setFakeBoldText(true);
         // 去掉下划线
         ds.setUnderlineText(false);
     }

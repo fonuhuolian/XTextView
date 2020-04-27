@@ -33,7 +33,10 @@ public class XCommentTextView extends AppCompatTextView {
      * 文字大小
      */
     private float textSize;
-
+    /**
+     * 是否需要回复人名之间的空格
+     */
+    private boolean isNeedSpace;
 
     /**
      * 构造方法（暂时只支持xml）
@@ -48,6 +51,7 @@ public class XCommentTextView extends AppCompatTextView {
         mNameTextColor = ta.getColor(R.styleable.XCommentTextView_x_comment_name_textColor, Color.parseColor("#586b95"));
         mContentTextColor = ta.getColor(R.styleable.XCommentTextView_x_comment_content_textColor, Color.parseColor("#181818"));
         textSize = ta.getDimension(R.styleable.XCommentTextView_x_comment_textSize, dip2px(15));
+        isNeedSpace = ta.getBoolean(R.styleable.XCommentTextView_x_comment_answer_space, false);
         ta.recycle();
     }
 
@@ -97,7 +101,11 @@ public class XCommentTextView extends AppCompatTextView {
 
             builder.append(leftName);
             builder.setSpan(new CommentClickSpan(mCommentInfo, true, mListener, mNameTextColor, textSize), start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-            builder.append("回复");
+
+            if (isNeedSpace)
+                builder.append(" 回复 ");
+            else
+                builder.append("回复");
 
 
             int start2 = builder.length();
@@ -105,7 +113,7 @@ public class XCommentTextView extends AppCompatTextView {
             builder.append(rightName);
             builder.setSpan(new CommentClickSpan(mCommentInfo, false, mListener, mNameTextColor, textSize), start2, end2, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 
-            builder.append(": ");
+            builder.append("：");
             builder.append(comment);
 
         } else {

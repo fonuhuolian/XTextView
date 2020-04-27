@@ -37,6 +37,7 @@
         android:id="@+id/praise"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:x_comment_answer_space="false"
         app:x_comment_content_textColor="@color/colorPrimary"
         app:x_comment_name_textColor="@color/colorAccent"
         app:x_comment_textSize="15dp" />

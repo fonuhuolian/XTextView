@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
 
         XCommentTextView praise = (XCommentTextView) findViewById(R.id.praise);
 
-        praise.setData(0, "Zack", "刘硕", "啦啦啦", true, new OnCommentClickListener() {
+        praise.setData(0, "Zack", "Jack", "啦啦啦", true, new OnCommentClickListener() {
             @Override
             public void onLeftNameClick(int position, String name) {
                 Toast.makeText(MainActivity.this, position + "+" + name, Toast.LENGTH_SHORT).show();

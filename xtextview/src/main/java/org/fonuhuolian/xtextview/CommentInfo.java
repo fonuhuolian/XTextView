@@ -10,16 +10,13 @@ final class CommentInfo {
     private String comment;
     // 是否是回复消息
     private boolean isAnswer;
-    // 是否是最后一条评论
-    private boolean isLast;
 
-    CommentInfo(int index, String leftName, String rightName, String comment, boolean isAnswer, boolean isLast) {
+    CommentInfo(int index, String leftName, String rightName, String comment, boolean isAnswer) {
         this.index = index;
         this.leftName = leftName;
         this.rightName = rightName;
         this.comment = comment;
         this.isAnswer = isAnswer;
-        this.isLast = isLast;
     }
 
     int getIndex() {
@@ -60,13 +57,5 @@ final class CommentInfo {
 
     public void setAnswer(boolean answer) {
         isAnswer = answer;
-    }
-
-    boolean isLast() {
-        return isLast;
-    }
-
-    public void setLast(boolean last) {
-        isLast = last;
     }
 }

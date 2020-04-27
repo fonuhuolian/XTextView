@@ -59,12 +59,11 @@ public class XCommentTextView extends AppCompatTextView {
      * @param rightName 右边的人名(被回复人)
      * @param comment   评论内容
      * @param isAnswer  是否是回复的评论
-     * @param isLastRow 是否是最后一条评论
      * @param mListener 监听事件
      */
-    public XCommentTextView setData(int index, String leftName, String rightName, String comment, boolean isAnswer, boolean isLastRow, OnCommentClickListener mListener) {
+    public XCommentTextView setData(int index, String leftName, String rightName, String comment, boolean isAnswer, OnCommentClickListener mListener) {
 
-        this.mCommentInfo = new CommentInfo(index, leftName, rightName, comment, isAnswer, isLastRow);
+        this.mCommentInfo = new CommentInfo(index, leftName, rightName, comment, isAnswer);
 
         this.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSize);
         this.setTextColor(mContentTextColor);
@@ -86,9 +85,6 @@ public class XCommentTextView extends AppCompatTextView {
     private SpannableStringBuilder getCommentString() {
 
         SpannableStringBuilder builder = new SpannableStringBuilder();
-
-        String enter = mCommentInfo.isLast() ? "" : "\n";
-
         String leftName = mCommentInfo.getLeftName();
         String rightName = mCommentInfo.getRightName();
         String comment = mCommentInfo.getComment();
@@ -111,7 +107,6 @@ public class XCommentTextView extends AppCompatTextView {
 
             builder.append(": ");
             builder.append(comment);
-            builder.append(enter);
 
         } else {
 
@@ -122,7 +117,6 @@ public class XCommentTextView extends AppCompatTextView {
             builder.setSpan(new CommentClickSpan(mCommentInfo, true, mListener, mNameTextColor, textSize), start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
             builder.append(": ");
             builder.append(comment);
-            builder.append(enter);
         }
 
         return builder;

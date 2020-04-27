@@ -16,7 +16,7 @@ allprojects {
 ```
 `module build.gradle `
 ```
-implementation 'com.github.fonuhuolian:XTextView:1.1.7'
+implementation 'com.github.fonuhuolian:XTextView:1.1.8'
 ```
 
 > 混淆
@@ -59,14 +59,14 @@ foldTextView.setText();
 > ②时间textview
 
 ```
-<org.fonuhuolian.xtextview.TimeTextView
+<org.fonuhuolian.xtextview.XTimeTextView
     android:id="@+id/time"
     android:layout_width="match_parent"
     android:layout_height="wrap_content" />
 ```
 
 ```
-TimeTextView timeTextView = (TimeTextView) findViewById(R.id.time);
+XTimeTextView timeTextView = (XTimeTextView) findViewById(R.id.time);
 long time = System.currentTimeMillis();
 timeTextView.setTextByTime(time, TimeFormatStyle.TIME_STYYLE4);
 ```
@@ -109,8 +109,7 @@ praise.setData(strings, new OnPraiseClickListener() {
   * @param rightName 右边的人名(被回复人)
   * @param comment   评论内容
   * @param isAnswer  是否是回复的评论
-  * @param isLastRow 是否是最后一条评论
   * @param mListener 监听事件
   */
-public XCommentTextView setData(int index, String leftName, String rightName, String comment, boolean isAnswer, boolean isLastRow, OnCommentClickListener mListener);
+public XCommentTextView setData(int index, String leftName, String rightName, String comment, boolean isAnswer, OnCommentClickListener mListener);
 ```

@@ -20,4 +20,10 @@
         <attr name="x_praise_textSize" format="dimension" />
     </declare-styleable>
 
+    <declare-styleable name="XCommentTextView">
+        <attr name="x_comment_name_textColor" format="color" />
+        <attr name="x_comment_content_textColor" format="color" />
+        <attr name="x_comment_textSize" format="dimension" />
+    </declare-styleable>
+
 </resources>

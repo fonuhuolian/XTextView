@@ -23,7 +23,7 @@ final class XTextViewUtil {
         return todayStart.getTime().getTime();
     }
 
-    public static long getTodayEndTime() {
+    static long getTodayEndTime() {
 
         long endTime = 0;
 

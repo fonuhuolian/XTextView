@@ -16,7 +16,7 @@ allprojects {
 ```
 `module build.gradle `
 ```
-implementation 'com.github.fonuhuolian:XTextView:1.1.6.1'
+implementation 'com.github.fonuhuolian:XTextView:1.1.7'
 ```
 
 > 混淆
@@ -89,4 +89,28 @@ praise.setData(strings, new OnPraiseClickListener() {
 
     }
 });
+```
+> ④评论textview
+```
+<org.fonuhuolian.xtextview.XCommentTextView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:x_comment_content_textColor="@color/colorPrimary"
+    app:x_comment_name_textColor="@color/colorAccent"
+    app:x_comment_textSize="15dp" />
+```
+
+```
+/**
+  * 设置评论的数据
+  *
+  * @param index     评论数据的下标(所有评论list的此条评论对应的index)
+  * @param leftName  左边的人名(评论人)
+  * @param rightName 右边的人名(被回复人)
+  * @param comment   评论内容
+  * @param isAnswer  是否是回复的评论
+  * @param isLastRow 是否是最后一条评论
+  * @param mListener 监听事件
+  */
+public XCommentTextView setData(int index, String leftName, String rightName, String comment, boolean isAnswer, boolean isLastRow, OnCommentClickListener mListener);
 ```

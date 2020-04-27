@@ -33,11 +33,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-    <org.fonuhuolian.xtextview.XPraiseTextView
+    <org.fonuhuolian.xtextview.XCommentTextView
         android:id="@+id/praise"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:x_praise_Icon="@drawable/x_heart"
-        app:x_praise_textSize="15dp" />
+        app:x_comment_content_textColor="@color/colorPrimary"
+        app:x_comment_name_textColor="@color/colorAccent"
+        app:x_comment_textSize="15dp" />
 
 </LinearLayout>

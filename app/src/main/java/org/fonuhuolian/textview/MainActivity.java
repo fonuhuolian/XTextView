@@ -7,13 +7,10 @@ import android.widget.Toast;
 
 import org.fonuhuolian.xtextview.FoldTextView;
 import org.fonuhuolian.xtextview.TimeFormatStyle;
-import org.fonuhuolian.xtextview.XPraiseTextView;
+import org.fonuhuolian.xtextview.XCommentTextView;
 import org.fonuhuolian.xtextview.XTimeTextView;
+import org.fonuhuolian.xtextview.listener.OnCommentClickListener;
 import org.fonuhuolian.xtextview.listener.OnExpandedChangeListener;
-import org.fonuhuolian.xtextview.listener.OnPraiseClickListener;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -40,18 +37,25 @@ public class MainActivity extends AppCompatActivity {
 
         XTimeTextView.setTextByTime(time, TimeFormatStyle.TIME_STYYLE4);
 
-        XPraiseTextView praise = (XPraiseTextView) findViewById(R.id.praise);
+        XCommentTextView praise = (XCommentTextView) findViewById(R.id.praise);
 
-        List<String> strings = new ArrayList<>();
-        strings.add("爱吃鸡腿的Craig");
-        strings.add("Zack");
-
-        praise.setData(strings, new OnPraiseClickListener() {
+        praise.setData(0, "Zack", "刘硕", "啦啦啦", true, true, new OnCommentClickListener() {
             @Override
-            public void onClick(int position, String name) {
-                Toast.makeText(MainActivity.this, name + "+" + position, Toast.LENGTH_SHORT).show();
+            public void onLeftNameClick(int position, String name) {
+                Toast.makeText(MainActivity.this, position + "+" + name, Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onRightNameClick(int position, String name) {
+                Toast.makeText(MainActivity.this, position + "+" + name, Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onAllClick(int position) {
+                Toast.makeText(MainActivity.this, "回复", Toast.LENGTH_SHORT).show();
             }
         });
+
     }
 
     public void onchange(View view) {

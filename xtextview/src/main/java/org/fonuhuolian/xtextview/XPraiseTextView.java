@@ -68,7 +68,7 @@ public class XPraiseTextView extends AppCompatTextView {
             this.mPraiseInfos.add(new PraiseInfo(i, data.get(i)));
         }
 
-        this.setTextSize(TypedValue.COMPLEX_UNIT_PX,textSize);
+        this.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSize);
         this.setTextColor(mNameTextColor);
         this.mListener = mListener;
         this.setText(getPraiseString());

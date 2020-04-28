@@ -56,7 +56,6 @@ final class TextCommentMovementMethod extends LinkMovementMethod {
                 mClickSpan.setPressed(false);
                 mClickSpan = null;
                 Selection.removeSelection(buffer);
-            } else {
 
                 int height = widget.getHeight();
                 int y = (int) event.getY();

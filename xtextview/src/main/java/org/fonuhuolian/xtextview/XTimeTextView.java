@@ -79,22 +79,37 @@ public class XTimeTextView extends AppCompatTextView {
         } else {
 
             long todayEndTime = XTextViewUtil.getTodayEndTime();
+            long todayStartTime = XTextViewUtil.getTodayStartTime();
 
-            // 此周前（本周星期一之前）或者今天23:59:59:999之后
-            if (XTextViewUtil.getThisWeekStartTime() > time || time > todayEndTime) {
+            // 今天23:59:59:999之后
+            if (time > todayEndTime) {
                 // 显示年月日
                 String format = new SimpleDateFormat(style.getFormat()).format(time);
                 this.setText(format);
+            } else if (XTextViewUtil.getThisWeekStartTime() > time) {
+                // 此周前（本周星期二之前） 为了保证 今天是周一 能显示昨天
+                // 显示年月日
+                // 昨天的优先级 大于 昨天是上周日的情况
+                if (time > todayStartTime - XTextViewUtil.oneDayTime && time < todayStartTime) {
+                    int i = style.getFormat().indexOf(" ");
+                    String formatStyle = style.getFormat().substring(i + 1);
+                    String format = new SimpleDateFormat(formatStyle).format(time);
+                    // 显示昨天
+                    this.setText("昨天 " + format);
+                } else {
+                    String format = new SimpleDateFormat(style.getFormat()).format(time);
+                    this.setText(format);
+                }
             } else {
                 // 显示星期 时分
                 int i = style.getFormat().indexOf(" ");
                 String formatStyle = style.getFormat().substring(i + 1);
                 String format = new SimpleDateFormat(formatStyle).format(time);
 
-                if (todayEndTime - XTextViewUtil.oneDayTime * 2 > time) {
+                if (todayStartTime - XTextViewUtil.oneDayTime > time) {
                     // 显示星期
                     this.setText(XTextViewUtil.getWeek(time) + " " + format);
-                } else if (todayEndTime - XTextViewUtil.oneDayTime > time) {
+                } else if (time > todayStartTime - XTextViewUtil.oneDayTime && time < todayStartTime) {
                     // 显示昨天
                     this.setText("昨天 " + format);
                 } else {

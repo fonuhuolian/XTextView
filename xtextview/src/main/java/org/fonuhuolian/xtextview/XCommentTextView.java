@@ -96,6 +96,9 @@ public class XCommentTextView extends AppCompatTextView {
 
         if (answer) {
 
+            if (leftName == null)
+                leftName = "";
+
             int start = builder.length();
             int end = start + leftName.length();
 
@@ -108,6 +111,9 @@ public class XCommentTextView extends AppCompatTextView {
                 builder.append("回复");
 
 
+            if (rightName == null)
+                rightName = "";
+
             int start2 = builder.length();
             int end2 = start2 + rightName.length();
             builder.append(rightName);
@@ -117,6 +123,9 @@ public class XCommentTextView extends AppCompatTextView {
             builder.append(comment);
 
         } else {
+
+            if (leftName == null)
+                leftName = "";
 
             int start = builder.length();
             int end = start + leftName.length();
